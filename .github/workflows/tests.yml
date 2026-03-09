@@ -24,9 +24,9 @@ jobs:
         with:
           xcode-version: '26.3'
 
-      - name: Install iOS 26.2 simulator
+      - name: Install iOS simulator
         run: |
-          xcodebuild -downloadPlatform iOS -buildVersion 26.2
+          xcodebuild -downloadPlatform iOS
           xcrun simctl list devices available
 
       - name: Set up Ruby
