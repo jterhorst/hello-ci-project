@@ -41,3 +41,4 @@ jobs:
         env:
           FANCY_NEW_TOKEN_NAME: ${{ secrets.FANCY_NEW_TOKEN_NAME }}
         run: bundle exec fastlane ios tests
+          
