@@ -38,4 +38,6 @@ jobs:
           bundler-cache: true
 
       - name: Run tests
+        env:
+          FANCY_NEW_TOKEN_NAME: ${{ secrets.FANCY_NEW_TOKEN_NAME }}
         run: bundle exec fastlane ios tests
