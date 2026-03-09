@@ -26,7 +26,9 @@ jobs:
 
       - name: Install iOS simulator
         run: |
+          sudo killall -9 com.apple.CoreSimulator.CoreSimulatorService || true
           xcodebuild -downloadPlatform iOS
+          xcrun simctl shutdown all || true
           xcrun simctl list devices available
 
       - name: Set up Ruby
