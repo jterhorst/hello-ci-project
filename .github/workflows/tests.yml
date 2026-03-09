@@ -19,8 +19,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Xcode 26.3
-        uses: xcodes-org/setup-xcodes@v2
+      - name: Select Xcode 26.3
+        uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: '26.3'
 
