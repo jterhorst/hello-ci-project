@@ -1,0 +1,39 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: macos-26
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Xcode 26.3
+        uses: xcodes-org/setup-xcodes@v2
+        with:
+          xcode-version: '26.3'
+
+      - name: Install iOS 26.2 simulator
+        run: |
+          xcodebuild -downloadPlatform iOS -buildVersion 26.2
+          xcrun simctl list devices available
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Run tests
+        run: bundle exec fastlane ios tests
